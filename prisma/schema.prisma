@@ -13,5 +13,27 @@ datasource db {
 model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
-  name  String?
+  name  String
+  password String
+}
+
+//profile is front facing, user is private
+model Profile {
+  id      Int      @id @default(autoincrement())
+  name    String
+  major   String
+  reviews Review[]
+}
+
+model Review {
+  id               Int      @id @default(autoincrement())
+  course_code      Int
+  num_overall      Int
+  num_technical    Int
+  num_effort       Int
+  num_sociability  Int
+  num_contribution Int
+  comment          String
+  Profile          Profile? @relation(fields: [profileId], references: [id])
+  profileId        Int?
 }
