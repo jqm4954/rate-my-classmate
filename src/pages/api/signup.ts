@@ -10,42 +10,38 @@ interface User {
 }
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
-      const { username, email, password }: User = req.body
-      
-      if (!username || !email || !password) {
-        res.status(400).json({ message: 'Missing required field' })
-        return
-      }
-      
-      const user: User = {
-        username,
-        email,
-        password
-      }
+        const { username, email, password }: User = req.body
 
-      const prisma = new PrismaClient()
+        if (!username || !email || !password) {
+            res.status(400).json({ message: 'Missing required field' })
+            return
+        }
+
+        const user: User = {
+            username,
+            email,
+            password
+        }
+
+        const prisma = new PrismaClient()
 
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in
-            const authUser = userCredential.user;
+            .then((userCredential) => {
+                // Signed in
+                const authUser = userCredential.user;
 
-            const createdUser = await prisma.user.create({
-                //pass
+                res.status(200).json({user: user})
             })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                res.status(error.code).json({message: error.message})
+            });
 
-            res.status(200).json({user: user})
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            res.status(error.code).json({message: error.message})
-        });
-
-      res.status(200).json({ message: 'User registered successfully' })
+        res.status(200).json({ message: 'User registered successfully' })
     } else {
-      res.status(405).json({ message: 'Method Not Allowed' })
+        res.status(405).json({ message: 'Method Not Allowed' })
     }
   }
 
