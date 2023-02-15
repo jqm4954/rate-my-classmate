@@ -1,4 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
 
 interface User {
     username: string
@@ -19,6 +21,19 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         email,
         password
       }
+
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                res.status(200).json({user: user})
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                res.status(error.code).json({message: error.message})
+            });
   
       res.status(200).json({ message: 'User registered successfully' })
     } else {
