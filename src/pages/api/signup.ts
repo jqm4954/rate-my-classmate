@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { PrismaClient } from '@prisma/client'
 
 
 interface User {
@@ -22,19 +23,26 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         password
       }
 
+      const prisma = new PrismaClient()
+
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                res.status(200).json({user: user})
+        .then((userCredential) => {
+            // Signed in
+            const authUser = userCredential.user;
+
+            const createdUser = await prisma.user.create({
+                //pass
             })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                res.status(error.code).json({message: error.message})
-            });
-  
+
+            res.status(200).json({user: user})
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            res.status(error.code).json({message: error.message})
+        });
+
       res.status(200).json({ message: 'User registered successfully' })
     } else {
       res.status(405).json({ message: 'Method Not Allowed' })
