@@ -2,8 +2,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 
-
-
 interface User {
     username: string
     email: string

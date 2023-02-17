@@ -25,6 +25,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
         const prisma = new PrismaClient()
 
+
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
