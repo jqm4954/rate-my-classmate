@@ -1,5 +1,5 @@
 import React, {FormEvent, useState} from "react";
-import {getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut} from "@firebase/auth";
+import {getAuth} from "@firebase/auth";
 import {initFirebase} from "@/core/firebase";
 import {useUser} from "@/core/hooks";
 
@@ -25,30 +25,30 @@ export default function Home() {
 
 
     return (
-        <div className={"flex"}>
-            <div className={"mx-auto flex flex-col items-center"}>
-                {!user && (
-                    <>
-                        <input value={email} onInput={handleEmail} className={"border-2 border-indigo-500"}
-                               type={"email"}
-                               placeholder={"email"}/>
-                        <input value={password} onInput={handlePassword} className={"border-2 border-indigo-500"}
-                               type={"password"} placeholder={"password"}/>
-                        <button onClick={handleLogin} className={"mt-3"}>Sign In</button>
-                        <div className={"mt-12 font-bold"}>
-                            <p>Not Signed In</p>
+        <div className={"min-h-screen flex justify-center items-center"}>
+            <div className={"bg-gray shadow-lg rounded-2xl p-12 w-[32rem]"}>
+                <div>
+                    <h1 className={"font-bold text-3xl text-brown drop-shadow text-center"}>Rate My Classmate</h1>
+                </div>
+                <div className={"mt-9"}>
+                    <div className={"flex flex-col"}>
+                        <label className={"font-semibold text-lg text-brown"}>Email</label>
+                        <input type={"email"} className={"bg-eggWhite rounded-lg shadow-md px-3 py-1.5"}/>
+                    </div>
+                    <div className={"flex flex-col mt-3"}>
+                        <label className={"font-semibold text-lg text-brown"}>Password</label>
+                        <input type={"password"} className={"bg-eggWhite rounded-lg shadow-md px-3 py-1.5"}/>
+                    </div>
+                    <div className={"items-start mt-9 flex flex-col"}>
+                        <div className={"flex w-full justify-between"}>
+                            <button className={"underline text-brown font-semibold"}>Forgot Password</button>
+                            <button className={"underline text-brown font-semibold"}>Sign Up</button>
                         </div>
-                    </>
-                )}
-                {user && (
-                    <>
-                        <div className={"mt-12 font-bold"}>
-                            <p>Email: {user.email}</p>
-                            <p>Signed In</p>
-                            <button onClick={handleLogout} className={"mt-3"}>Sign Out</button>
+                        <div className={"w-full mt-1.5"}>
+                            <button className={"w-full rounded-lg py-1.5 bg-brown text-lg text-white font-semibold shadow-md"}>Sign In</button>
                         </div>
-                    </>
-                )}
+                    </div>
+                </div>
             </div>
         </div>
     );
