@@ -23,7 +23,6 @@ export default function Home() {
         setPassword(e.currentTarget.value);
     }
 
-
     return (
         <div className={"min-h-screen flex justify-center items-center"}>
             <div className={"bg-gray shadow-lg rounded-2xl p-12 w-[32rem]"}>

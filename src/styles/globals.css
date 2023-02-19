@@ -5,3 +5,7 @@
 #__next {
     @apply bg-[#FBFBF2]
 }
+
+* {
+    color: #5F5455;
+}
