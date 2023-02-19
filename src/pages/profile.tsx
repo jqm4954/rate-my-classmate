@@ -7,6 +7,9 @@ export default function Profile() {
     <>
       <TopBar></TopBar>
       <SideBar></SideBar>
+      <div className={styles.content}>
+
+      </div>
     </>
   )
 }
