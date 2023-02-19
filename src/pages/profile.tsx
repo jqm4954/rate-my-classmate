@@ -1,7 +1,11 @@
-import styles from "src/styles/Profile.module.css";
+import SideBar from "@/core/components/sidebar";
+import styles from "src/styles/profile.module.css";
 
 export default function Profile() {
   return (
-    <div className={styles.test}>This is my profile</div>
+    <>
+      <SideBar></SideBar>
+      <div className={styles.test}>This is my profile</div>
+    </>
   )
 }
