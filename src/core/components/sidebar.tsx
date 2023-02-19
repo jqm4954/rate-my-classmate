@@ -13,20 +13,17 @@ class Link {
 
 export default function SideBar() {
   const router = useRouter();
-  let links: Link[] = [
-    new Link("My Profile", '/profile'),
-    new Link("Classmate Search", '/search'),
-    new Link("Settings", '/settings')
-  ]
-  let htmlLinks = [];
-  for(let link of links) {
-    htmlLinks.push(<a className={`${styles.link} ${router.pathname == link.link ? styles.active : ''}`} href={link.link}>
-      {link.title}
-    </a>)
-  }
   return (
     <div className={styles.sidebar}>
-      <tbody>{htmlLinks}</tbody>
+      <a className={`${styles.link} ${router.pathname == '/profile' ? styles.active : ''}`} href={'/profile'}>
+        My Profile
+      </a>
+      <a className={`${styles.link} ${router.pathname == '/search' ? styles.active : ''}`} href={'/search'}>
+        Classmate Search
+      </a>
+      <a className={`${styles.link} ${router.pathname == '/settings' ? styles.active : ''}`} href={'/settings'}>
+        Settings
+      </a>
     </div>
   )
 }
