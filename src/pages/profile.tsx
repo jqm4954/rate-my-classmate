@@ -26,7 +26,35 @@ export default function Profile() {
               <span className={styles.overallRating}>{overall.rating}</span>/5
             </div>
             <div className={styles.avgRatingDistribution}>
-              <div className={styles.distributionTitle}>Average Rating Distribution</div>
+              <div className={styles.title}>Average Rating Distribution</div>
+              <div className={styles.distributionRow}>
+                <div className={styles.distributionTitle}>Technical</div>
+                <div className={styles.progressBar}>
+                  <div style={{ width: `${(overall.technical / 5.0) * 576}px` }} className={styles.distributionProgress}></div>
+                </div>
+                <div className={styles.distributionRating}><span className={styles.totalDistribution}>{overall.technical}</span>/5</div>
+              </div>
+              <div className={styles.distributionRow}>
+                <div className={styles.distributionTitle}>Effort</div>
+                <div className={styles.progressBar}>
+                  <div style={{ width: `${(overall.effort / 5.0) * 576}px` }} className={styles.distributionProgress}></div>
+                </div>
+                <div className={styles.distributionRating}><span className={styles.totalDistribution}>{overall.effort}</span>/5</div>
+              </div>
+              <div className={styles.distributionRow}>
+                <div className={styles.distributionTitle}>Sociability</div>
+                <div className={styles.progressBar}>
+                  <div style={{ width: `${(overall.sociability / 5.0) * 576}px` }} className={styles.distributionProgress}></div>
+                </div>
+                <div className={styles.distributionRating}><span className={styles.totalDistribution}>{overall.sociability}</span>/5</div>
+              </div>
+              <div className={styles.distributionRow}>
+                <div className={styles.distributionTitle}>Contribution</div>
+                <div className={styles.progressBar}>
+                  <div style={{ width: `${(overall.contribution / 5.0) * 576}px` }} className={styles.distributionProgress}></div>
+                </div>
+                <div className={styles.distributionRating}><span className={styles.totalDistribution}>{overall.contribution}</span>/5</div>
+              </div>
             </div>
           </div>
         </div>

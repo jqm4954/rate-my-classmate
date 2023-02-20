@@ -34,10 +34,52 @@
   height: fit-content;
 }
 
-.distributionTitle {
+.title {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
   font-weight: 700;
   font-size: 32px;
   width: 100%;
   text-align: center;
+}
+
+.distributionRow {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.distributionTitle {
+  width: 125px;
+  text-align: right;
+  font-weight: 700;
+  color: #493829;
+  font-size: 20px;
+}
+
+.progressBar {
+  width: 590px;
+  height: 44px;
+  border: 3px solid #5F5455;
+  border-radius: 2px;
+  padding: 2px;
+  margin: 0px 10px 0px 10px; 
+}
+
+.distributionProgress {
+  background-color: #493829;
+  border-radius: 2px;
+  height: 100%;
+}
+
+.distributionRating {
+  color: #493829;
+  font-weight: 700;
+  font-size: 20px;
+  width: 65px;
+}
+
+.totalDistribution {
+  font-size: 32px;
+  color: #493829;
 }
