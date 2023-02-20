@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
-import {getAuth} from "@firebase/auth";
 import {useRouter} from "next/router";
 import cookies from "js-cookie";
 import {userCookie} from "@/core/types";
+import {auth} from "@/core/firebase";
 
 const getUserFromCookie = () => {
     const cookie = cookies.get("auth");
@@ -20,14 +20,14 @@ const setUserCookie = (user: userCookie) => {
 const removeUserCookie = () => cookies.remove('auth');
 
 const useUser = () => {
+    const [loading, setLoading] = useState(true);
     const [user, setUser] = useState<userCookie>();
     const router = useRouter();
-    const auth = getAuth();
 
     const logout = async () => {
         await auth.signOut();
         removeUserCookie();
-        router.push("/auth");
+        router.push("/signin");
     }
 
     useEffect(() => {
@@ -40,24 +40,25 @@ const useUser = () => {
                 };
                 setUserCookie(userData);
                 setUser(userData);
+                router.push("/")
             } else {
                 removeUserCookie();
                 setUser(undefined);
             }
+            setLoading(false);
         })
 
         const userFromCookie = getUserFromCookie()
-        if (!userFromCookie) {
-            router.push('/')
-            return
-        }
+        if (!userFromCookie)
+            return;
+
         setUser(userFromCookie)
         return () => {
             cancelAuthListener()
         }
     }, [])
 
-    return {user, logout}
+    return {user, logout, loading};
 };
 
 export {useUser};

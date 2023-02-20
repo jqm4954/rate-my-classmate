@@ -1,3 +1,5 @@
+import {ReactNode} from "react";
+
 export type userCookie = {
     id: string;
     email: string | null;
@@ -16,4 +18,8 @@ export type University = {
     alpha_two_code: string;
     web_pages: string[];
     name: string;
+}
+
+export type PropsWithChildren = {
+    children: ReactNode
 }
