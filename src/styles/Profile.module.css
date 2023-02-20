@@ -83,3 +83,8 @@
   font-size: 32px;
   color: #493829;
 }
+
+.ratingsOverall {
+  width: 100%;
+  text-align: right;
+}
