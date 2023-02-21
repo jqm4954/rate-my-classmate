@@ -1,5 +1,6 @@
 .topbar {
-  position: relative;
+  position: sticky;
+  top: 0;
   height: 151px;
   background-color: #E5E6E4;
   border-bottom: 1px solid #9D8189;

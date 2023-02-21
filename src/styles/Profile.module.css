@@ -88,3 +88,11 @@
   width: 100%;
   text-align: right;
 }
+
+.ratingsTitle {
+  height: 62px;
+  line-height: 62px;
+  color: #493829;
+  font-weight: 700;
+  font-size: 36px;
+}

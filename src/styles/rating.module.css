@@ -1,0 +1,67 @@
+.rating {
+  width: 100%;
+  height: fit-content;
+  min-height: 150px;
+  background: #FBFBF2;
+  border: 2px solid #847577;
+  border-radius: 2px;
+  margin-bottom: 15px;
+  padding: 15px 30px 15px 10px;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user {
+  color: #847577;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 36px;
+  text-decoration: underline;
+}
+
+.ratingBreakdown {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 24px;
+  color: #493829;
+  width: 70%;
+}
+
+.breakdownSeparator {
+  width: 1px;
+  height: 33px;
+  background-color: #49382980;
+  border-radius: 5px;
+}
+
+.breakdownBox {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  line-height: 45px;
+  border-radius: 2px;
+  margin-left: 3px;
+}
+
+.breakdownRating {
+  display: flex;
+  align-items: baseline;
+}
+
+.class {
+  color: #847577;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.comment {
+  color: #493829;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 20px;
+}
