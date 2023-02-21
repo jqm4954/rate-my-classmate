@@ -21,14 +21,15 @@ export default function Rating(props: any) {
       "background": numberRating < 2.0 ? colors.red :
         numberRating < 3.6 ? colors.yellow : colors.green
     }
-    let ratingBlock = <div className={styles.breakdownRating}>
+    const indexOfSection = ratingBreakdownSections.indexOf(section);
+    let ratingBlock = <div className={styles.breakdownRating} key={indexOfSection}>
       {section}:
       <div className={styles.breakdownBox}
         style={boxColor}>{numberRating}</div>
     </div>;
     breakdown.push(ratingBlock);
-    if(ratingBreakdownSections.indexOf(section) < ratingBreakdownSections.length - 1) {
-      breakdown.push(<div className={styles.breakdownSeparator}></div>)
+    if(indexOfSection < ratingBreakdownSections.length - 1) {
+      breakdown.push(<div className={styles.breakdownSeparator} key={`divider-${indexOfSection}`}></div>)
     }
   }
   // TODO: Clicking on a user's name will link to their profile

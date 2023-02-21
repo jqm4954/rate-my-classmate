@@ -15,7 +15,7 @@ export default function SideBar() {
   const router = useRouter();
   const links: Link[] = [
     new Link("My Profile", '/profile'),
-    new Link("ClassmateSearch", '/search'),
+    new Link("Classmate Search", '/search'),
     new Link("Settings", '/settings')
   ];
   let htmlLinks = [];
