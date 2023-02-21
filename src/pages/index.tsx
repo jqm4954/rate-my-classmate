@@ -1,27 +1,12 @@
 import React, { FormEvent, useState } from "react";
 import { getAuth } from "@firebase/auth";
-import { initFirebase } from "@/core/firebase";
 import { useUser } from "@/core/hooks";
-
-initFirebase();
 
 export default function Home() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const auth = getAuth();
     const { user, logout } = useUser();
-
-    const handleSubmit = (e: FormEvent) => {
-
-    }
-
-    const handleEmail = (e: FormEvent<HTMLInputElement>) => {
-        setEmail(e.currentTarget.value);
-    }
-
-    const handlePassword = (e: FormEvent<HTMLInputElement>) => {
-        setPassword(e.currentTarget.value);
-    }
 
     return (
         <div className={"min-h-screen flex justify-center items-center"}>
@@ -50,5 +35,5 @@ export default function Home() {
                 </div>
             </div>
         </div>
-    );
+    )
 }

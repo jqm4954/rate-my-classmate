@@ -14,6 +14,7 @@ model Profile {
   id      Int      @id @default(autoincrement())
   name    String
   major   String
+  university String
   reviews Review[]
 }
 
@@ -21,7 +22,7 @@ model Review {
   id           Int      @id @default(autoincrement())
   profile      Profile? @relation(fields: [profileId], references: [id])
   profileId    Int?
-  course_code  Int
+  course_code  String
   overall      Int
   technical    Int
   effort       Int

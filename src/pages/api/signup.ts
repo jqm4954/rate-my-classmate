@@ -1,49 +1,30 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { PrismaClient } from '@prisma/client'
+import {createUserWithEmailAndPassword, getAuth} from "firebase/auth";
+import getHandler from "@/core/lib/middleware";
+import {User} from "@/core/types";
 
+const handler = getHandler();
 
-interface User {
-    username: string
-    email: string
-    password: string
-}
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method === 'POST') {
-        const { username, email, password }: User = req.body
+handler.post((req, res) => {
+    const {username, email, password}: User = req.body;
 
-        if (!username || !email || !password) {
-            res.status(400).json({ message: 'Missing required field' })
-            return
-        }
+    if (!username || !email || !password)
+        return res.status(400).json({message: 'Missing required field'})
 
-        const user: User = {
-            username,
-            email,
-            password
-        }
-
-        const prisma = new PrismaClient()
-
-
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in
-                const authUser = userCredential.user;
-
-                res.status(200).json({user: user})
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                res.status(error.code).json({message: error.message})
-            });
-
-        res.status(200).json({ message: 'User registered successfully' })
-    } else {
-        res.status(405).json({ message: 'Method Not Allowed' })
+    const user: User = {
+        username,
+        email,
+        password
     }
-  }
 
-  
+    const auth = getAuth();
+    return createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            return res.status(200).json({user: userCredential.user})
+        })
+        .catch((error) => {
+            console.error(error.code, error.message);
+            return res.status(error.code).json({message: error.message})
+        });
+});
+
+export default handler;

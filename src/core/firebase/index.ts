@@ -1,6 +1,7 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { getDatabase } from "@firebase/database";
+import {initializeApp} from "firebase/app";
+import {getFirestore} from "firebase/firestore";
+import {getDatabase} from "@firebase/database";
+import {getAuth} from "@firebase/auth";
 
 const clientCredentials = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -11,17 +12,12 @@ const clientCredentials = {
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-function initFirebase() {
-    if (typeof window !== undefined) {
-        initializeApp(clientCredentials);
-        console.log("Firebase has been init successfully!");
-    }
-}
-
 const app = initializeApp(clientCredentials);
+
+const auth = getAuth(app);
 
 const db = getFirestore(app);
 
 const realDB = getDatabase(app);
 
-export { initFirebase, db, realDB };
+export {auth, db, realDB};
