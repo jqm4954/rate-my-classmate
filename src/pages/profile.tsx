@@ -1,3 +1,4 @@
+import Rating from "@/core/components/rating";
 import SideBar from "@/core/components/sidebar";
 import TopBar from "@/core/components/topbar";
 import styles from "src/styles/profile.module.css";
@@ -21,7 +22,7 @@ export default function Profile() {
       effort: 4.0,
       sociability: 1.0,
       contribution: 1.0,
-      comment: "There was this one time that uuuuuh"
+      comment: "ofdjvwofiwnhviwegniwengweiovewrigvewrvwe brgoviwevbewiufwn begrisvbgivuweb vw vbwovrb weo vuwbebgoiuenhbsorigvweoi vgweoviuwvewioeuvngwveoiugvwovigwmeovgwumeewruebotvhwivthtvwoeimvgmnwo emivmoivhn"
     }, {
       user: "Obamna",
       class: "SWEN-356",
@@ -31,7 +32,11 @@ export default function Profile() {
       contribution: 0.5,
       comment: "Let me be clear"
     }
-  ]
+  ];
+  let htmlRatings = [];
+  for (let index in ratings) {
+    htmlRatings.push(<Rating key={index} rating={ratings[index]}></Rating>);
+  }
   return (
     <>
       <TopBar></TopBar>
@@ -79,6 +84,8 @@ export default function Profile() {
               <div className={styles.ratingsOverall}>Based on {ratings.length} ratings overall</div>
             </div>
           </div>
+          <div className={styles.ratingsTitle}>Ratings:</div>
+          {htmlRatings}
         </div>
       </div>
     </>
