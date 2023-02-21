@@ -1,6 +1,6 @@
 import styles from 'src/styles/topbar.module.css';
 
-export function Topbar() {
+export function TopBar() {
     const signOut = () => {
 
     }

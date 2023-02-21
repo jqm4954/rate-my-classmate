@@ -1,6 +1,5 @@
 import React, { FormEvent, useState } from "react";
 import { getAuth } from "@firebase/auth";
-import { initFirebase } from "@/core/firebase";
 import { useUser } from "@/core/hooks";
 
 export default function Home() {

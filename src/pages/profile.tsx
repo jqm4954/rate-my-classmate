@@ -1,6 +1,6 @@
 import Rating from "@/core/components/rating";
 import SideBar from "@/core/components/sidebar";
-import Topbar from "@/core/components/topbar";
+import { TopBar } from "@/core/components/topbar";
 import styles from "src/styles/profile.module.css";
 
 export default function Profile() {

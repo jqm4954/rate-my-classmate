@@ -1,14 +1,14 @@
 import styles from "src/styles/sidebar.module.css";
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 
 class Link {
-    title: string;
-    link: string;
+  title: string;
+  link: string;
 
-    constructor(title: string, link: string) {
-        this.title = title;
-        this.link = link;
-    }
+  constructor(title: string, link: string) {
+    this.title = title;
+    this.link = link;
+  }
 }
 
 export default function SideBar() {
