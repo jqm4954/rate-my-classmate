@@ -1,9 +1,10 @@
 import Rating from "@/core/components/rating";
 import SideBar from "@/core/components/Sidebar";
 import { TopBar } from "@/core/components/Topbar";
+import { Button } from "reactstrap";
 import styles from "src/styles/profile.module.css";
 
-export default function Profile() {
+export default function classmateProfile() {
   // TODO: API calls
   const name: string = "Joe Brandon"
   const major: string = "Software Engineering";
@@ -49,6 +50,8 @@ export default function Profile() {
             <div className={styles.overallRatingArea}>
               <span className={styles.overallRating}>{overall.rating}</span>/5
             </div>
+            <h4></h4>
+            <div><Button>Next</Button></div>
             <div>
               <div className={styles.avgRatingDistribution}>
                 <div className={styles.title}>Average Rating Distribution</div>
