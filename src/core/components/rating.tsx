@@ -1,8 +1,7 @@
 import styles from "src/styles/rating.module.css";
 
-export default function Rating(props: any) {
+export function Rating(props: any) {
   const rating = props.rating;
-  console.log(rating);
   const ratingBreakdownSections = [
     "Technical",
     "Effort",

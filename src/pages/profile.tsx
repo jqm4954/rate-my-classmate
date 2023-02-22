@@ -1,6 +1,4 @@
-import Rating from "@/core/components/rating";
-import { SideBar } from "@/core/components/Sidebar";
-import { TopBar } from "@/core/components/Topbar";
+import { Rating, SideBar, TopBar } from "@/core/components";
 import styles from "src/styles/profile.module.css";
 
 export default function Profile() {
@@ -48,7 +46,7 @@ export default function Profile() {
     // console.log(title);
     let rating = overall[title.toLowerCase()];
     htmlRatingRows.push(
-      <div className={styles.distributionRow}>
+      <div key={title.toLowerCase()} className={styles.distributionRow}>
         <div className={styles.distributionTitle}>{title}</div>
         <div className={styles.progressBar}>
           <div style={{ width: `${(rating / 5.0) * 576}px` }} className={styles.distributionProgress}></div>
