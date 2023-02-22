@@ -6,6 +6,6 @@ export const ProtectedPage = (props: PropsWithChildren) => {
     const {user, loading} = useUser();
 
     return (
-        loading ? <></> : user ? props.children : <Unauthorized/>
+        loading ? <></> : user ? <>{props.children}</> : <Unauthorized/>
     )
 };
