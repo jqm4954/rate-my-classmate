@@ -5,6 +5,7 @@ import {PrismaClient} from "@prisma/client";
 
 type Data = {
     classmateName: string
+    courseCode: string
     technicalAbility: number
     effort: number
     sociability: number
@@ -22,7 +23,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const prisma = new PrismaClient()
 
     //data from request
-    const {classmateName, technicalAbility, effort, sociability, contribution, comments, overallRating}: Data = req.body
+    const {classmateName, courseCode, technicalAbility, effort, sociability, contribution, comments, overallRating}: Data = req.body
 
 
     const auth = getAuth();
@@ -30,7 +31,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         //if authenticated
         if (user) {
             const reviewerEmail = user.email
+
             //TODO GET REVIEWER's SCHOOL FROM EMAIL
+            const reviewerSchool;
+            // reviewerSchool = school_service...
 
             if(reviewerEmail != null) {
                 //regex to get domain from email
@@ -41,8 +45,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                     // get classmate's data from database
                     const result = await prisma.profile.findMany({
                         where: {
-                            email: {
-                                endsWith: emailDomain,
+                            university: {
+                                equals: reviewerSchool,
                             },
                             name: {
                                 equals: classmateName
@@ -52,9 +56,31 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
                     //If classmate isnt in the database yet
                     if(result === null){
-                        //add classmat to database
-
+                        //add classmate to database and set result to be the new classmate
+                        const result = await prisma.profile.create({
+                            data: {
+                                name: classmateName,
+                                university: reviewerSchool
+                            },
+                        })
                     }
+
+
+                    //add the review to the given user
+                    const res = await prisma.review.create({
+                        data:{
+                            // profile=result.//set to profile from result
+                            // profileId
+                            course_code: courseCode,
+                            overall: overallRating,
+                            technical: technicalAbility,
+                            effort: effort,
+                            sociability: sociability,
+                            contribution: contribution,
+                            comment: comments
+                        }
+                    })
+
                 }
             }
 

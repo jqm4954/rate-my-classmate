@@ -1,27 +1,12 @@
-import React, {FormEvent, useState} from "react";
-import {getAuth} from "@firebase/auth";
-import {initFirebase} from "@/core/firebase";
-import {useUser} from "@/core/hooks";
-
-initFirebase();
+import React, { FormEvent, useState } from "react";
+import { getAuth } from "@firebase/auth";
+import { useUser } from "@/core/hooks";
 
 export default function Home() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const auth = getAuth();
-    const {user, logout} = useUser();
-
-    const handleSubmit = (e: FormEvent) => {
-
-    }
-
-    const handleEmail = (e: FormEvent<HTMLInputElement>) => {
-        setEmail(e.currentTarget.value);
-    }
-
-    const handlePassword = (e: FormEvent<HTMLInputElement>) => {
-        setPassword(e.currentTarget.value);
-    }
+    const { user, logout } = useUser();
 
     return (
         <div className={"min-h-screen flex justify-center items-center"}>
@@ -32,11 +17,11 @@ export default function Home() {
                 <div className={"mt-9"}>
                     <div className={"flex flex-col"}>
                         <label className={"font-semibold text-lg text-brown"}>Email</label>
-                        <input type={"email"} className={"bg-eggWhite rounded-lg shadow-md px-3 py-1.5"}/>
+                        <input type={"email"} className={"bg-eggWhite rounded-lg shadow-md px-3 py-1.5"} />
                     </div>
                     <div className={"flex flex-col mt-3"}>
                         <label className={"font-semibold text-lg text-brown"}>Password</label>
-                        <input type={"password"} className={"bg-eggWhite rounded-lg shadow-md px-3 py-1.5"}/>
+                        <input type={"password"} className={"bg-eggWhite rounded-lg shadow-md px-3 py-1.5"} />
                     </div>
                     <div className={"items-start mt-9 flex flex-col"}>
                         <div className={"flex w-full justify-between"}>
@@ -50,5 +35,5 @@ export default function Home() {
                 </div>
             </div>
         </div>
-    );
+    )
 }
