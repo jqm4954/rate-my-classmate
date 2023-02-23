@@ -1,4 +1,4 @@
-import { SideBar, TopBar } from "@/core/components";
+import { TopBar, SideBar } from "@/core/components";
 import { FormEvent, MouseEventHandler, useState } from "react";
 import styles from "src/styles/search.module.css";
 

@@ -11,7 +11,7 @@ class Link {
   }
 }
 
-export default function SideBar() {
+export function SideBar() {
   const router = useRouter();
   const links: Link[] = [
     new Link("My Profile", '/profile'),
