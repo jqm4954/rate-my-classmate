@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {PrismaClient} from "@prisma/client";
+import {getUniversityList} from "@/core/lib/helpers";
 
 type Data = {
     reviewerEmail: string
@@ -35,18 +36,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }: Data = req.body
 
 
-        //TODO GET REVIEWER's SCHOOL FROM EMAIL
-        const reviewerSchool;
-        // reviewerSchool = school_service...
+        const reviewerSchool = await getUniversityList()
+            .then((universities) =>
+                universities.find((university) =>
+                    university.domains.find((domain) => reviewerEmail.includes(domain))
+                )
+            );
 
-        if (reviewerEmail != null) {
-            //regex to get domain from email
+        if (reviewerSchool) {
 
             // get classmate's data from database
-            const result = await prisma.profile.findMany({
+            //TODO ISSUE: if multiple profiles exist with the same name and university this will only select the fiirst
+            //possible fix is to pass in the profile id of the classmate that the user is trying to review?
+            const classmateProfile = await prisma.profile.findFirst({
                 where: {
                     university: {
-                        equals: reviewerSchool,
+                        equals: reviewerSchool.name,
                     },
                     name: {
                         equals: classmateName
@@ -54,22 +59,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 }
             })
 
-            //If classmate isnt in the database yet
-            if (result === null) {
-                //add classmate to database and set result to be the new classmate
-                const result = await prisma.profile.create({
-                    data: {
-                        name: classmateName,
-                        university: reviewerSchool,
-                        major: "temp"
-                    },
-                })
 
-                //add the review to the given user
-                const res = await prisma.review.create({
+            //If classmate isnt in the database yet
+            if (classmateProfile === null) {
+               res.status(412).json({message: "classmate does not exist yet, please use rate_nonexisting endpoint"});
+
+            } else {
+                const classmate = await prisma.review.create({
                     data: {
-                        // profile=result.//set to profile from result
-                        // profileId
+                        profileId: classmateProfile.id,
                         course_code: courseCode,
                         overall: overallRating,
                         technical: technicalAbility,
@@ -78,11 +76,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         contribution: contribution,
                         comment: comments
                     }
-                })
+                });
 
+                res.status(200);
             }
+
+
         }
     }
-
-
 }
