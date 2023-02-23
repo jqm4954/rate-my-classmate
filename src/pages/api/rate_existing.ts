@@ -1,8 +1,8 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {PrismaClient} from "@prisma/client";
 import {getUniversityList} from "@/core/lib/helpers";
 
+//Data class based on rate_existing message body
 type Data = {
     reviewerEmail: string
     classmateName: string
@@ -15,6 +15,13 @@ type Data = {
     overallRating: number
 }
 
+/**
+ * Rate_existing endpoint allows for rating a classmate who already exists in the db given:
+ * reviewer email, classmate name, course code, technical ability, effort, sociability, contribution, comments, and
+ * overall rating values exist in the request body
+ * @param req the api request
+ * @param res the api response
+ */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     //if classmateName is from the same school
     //add info to database
@@ -44,7 +51,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             );
 
         if (reviewerSchool) {
-
             // get classmate's data from database
             //TODO ISSUE: if multiple profiles exist with the same name and university this will only select the fiirst
             //possible fix is to pass in the profile id of the classmate that the user is trying to review?
@@ -59,11 +65,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 }
             })
 
-
             //If classmate isnt in the database yet
             if (classmateProfile === null) {
                res.status(412).json({message: "classmate does not exist yet, please use rate_nonexisting endpoint"});
-
             } else {
                 const classmate = await prisma.review.create({
                     data: {
@@ -80,8 +84,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
                 res.status(200);
             }
-
-
+        } else {
+            res.status(400).json("Issue retrieving user's university from email");
         }
     }
 }

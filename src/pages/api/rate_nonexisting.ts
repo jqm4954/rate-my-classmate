@@ -16,6 +16,13 @@ type Data = {
     classmateMajor: string
 }
 
+/**
+ * Rate_nonexisting endpoint allows for rating a classmate who does not already exist in the db given:
+ * reviewer email, classmate name, course code, technical ability, effort, sociability, contribution, comments,
+ * classmate major, and overall rating values exist in the request body
+ * @param req the api request
+ * @param res the api response
+ */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     //if classmateName is from the same school
     //add info to database
@@ -55,10 +62,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     university: reviewerSchool.name,
                     major: classmateMajor
                 },
-            })
+            });
 
             //add the review to the given user
-            const res = await prisma.review.create({
+            const classmate = await prisma.review.create({
                 data: {
                     profileId: newClassmate.id,
                     course_code: courseCode,
@@ -69,8 +76,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     contribution: contribution,
                     comment: comments
                 }
-            })
+            });
 
+            res.status(200);
+
+        } else {
+            res.status(400).json("Issue retrieving user's university from email");
         }
     }
 }
