@@ -60,7 +60,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 const result = await prisma.profile.create({
                     data: {
                         name: classmateName,
-                        university: reviewerSchool
+                        university: reviewerSchool,
+                        major: "temp"
                     },
                 })
 
