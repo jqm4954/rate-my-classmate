@@ -1,6 +1,6 @@
 import React, {FormEvent, useState} from "react";
 import {useUser} from "@/core/hooks";
-import {createUserWithEmailAndPassword} from "firebase/auth";
+import {signInWithEmailAndPassword} from "@firebase/auth";
 import {auth} from "@/core/firebase";
 
 
@@ -17,14 +17,21 @@ export default function Signup() {
     }
 
     const handleSignup = async (e: FormEvent) => {
+        setError("");
         if (password !== confirmationPassword)
             return setError("Confirmation password does not equal password.");
 
-        await createUserWithEmailAndPassword(auth, email, password)
-            .catch((error) => {
-                console.error(error.code, error.message);
-                setError(error.message);
-            });
+        const result = await fetch('/api/signup', {
+            method: "POST",
+            body: JSON.stringify({email, password})
+        });
+
+        const json = await result.json();
+
+        if (!result.ok)
+            return setError(json.message);
+
+        await signInWithEmailAndPassword(auth, email, password);
     }
 
     const handleName = (e: FormEvent<HTMLInputElement>) => {

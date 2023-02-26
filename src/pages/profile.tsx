@@ -1,13 +1,11 @@
-import Rating from "@/core/components/rating";
-import SideBar from "@/core/components/Sidebar";
-import { TopBar } from "@/core/components/Topbar";
+import { Rating, SideBar, TopBar } from "@/core/components";
 import styles from "src/styles/profile.module.css";
 
 export default function Profile() {
   // TODO: API calls
   const name: string = "Joe Brandon"
   const major: string = "Software Engineering";
-  const overall = {
+  const overall: any = {
     rating: 3.8,
     technical: 3.4,
     effort: 4.2,
@@ -37,6 +35,26 @@ export default function Profile() {
   for (let index in ratings) {
     htmlRatings.push(<Rating key={index} rating={ratings[index]}></Rating>);
   }
+  const ratingTitles: string[] = [
+    "Technical",
+    "Effort",
+    "Sociability",
+    "Contribution"
+  ];
+  let htmlRatingRows = [];
+  for (let title of ratingTitles) {
+    // console.log(title);
+    let rating = overall[title.toLowerCase()];
+    htmlRatingRows.push(
+      <div key={title.toLowerCase()} className={styles.distributionRow}>
+        <div className={styles.distributionTitle}>{title}</div>
+        <div className={styles.progressBar}>
+          <div style={{ width: `${(rating / 5.0) * 576}px` }} className={styles.distributionProgress}></div>
+        </div>
+        <div className={styles.distributionRating}><span className={styles.totalDistribution}>{rating}</span>/5</div>
+      </div>
+    )
+  }
   return (
     <>
       <TopBar></TopBar>
@@ -52,34 +70,7 @@ export default function Profile() {
             <div>
               <div className={styles.avgRatingDistribution}>
                 <div className={styles.title}>Average Rating Distribution</div>
-                <div className={styles.distributionRow}>
-                  <div className={styles.distributionTitle}>Technical</div>
-                  <div className={styles.progressBar}>
-                    <div style={{ width: `${(overall.technical / 5.0) * 576}px` }} className={styles.distributionProgress}></div>
-                  </div>
-                  <div className={styles.distributionRating}><span className={styles.totalDistribution}>{overall.technical}</span>/5</div>
-                </div>
-                <div className={styles.distributionRow}>
-                  <div className={styles.distributionTitle}>Effort</div>
-                  <div className={styles.progressBar}>
-                    <div style={{ width: `${(overall.effort / 5.0) * 576}px` }} className={styles.distributionProgress}></div>
-                  </div>
-                  <div className={styles.distributionRating}><span className={styles.totalDistribution}>{overall.effort}</span>/5</div>
-                </div>
-                <div className={styles.distributionRow}>
-                  <div className={styles.distributionTitle}>Sociability</div>
-                  <div className={styles.progressBar}>
-                    <div style={{ width: `${(overall.sociability / 5.0) * 576}px` }} className={styles.distributionProgress}></div>
-                  </div>
-                  <div className={styles.distributionRating}><span className={styles.totalDistribution}>{overall.sociability}</span>/5</div>
-                </div>
-                <div className={styles.distributionRow}>
-                  <div className={styles.distributionTitle}>Contribution</div>
-                  <div className={styles.progressBar}>
-                    <div style={{ width: `${(overall.contribution / 5.0) * 576}px` }} className={styles.distributionProgress}></div>
-                  </div>
-                  <div className={styles.distributionRating}><span className={styles.totalDistribution}>{overall.contribution}</span>/5</div>
-                </div>
+                {htmlRatingRows}
               </div>
               <div className={styles.ratingsOverall}>Based on {ratings.length} ratings overall</div>
             </div>
