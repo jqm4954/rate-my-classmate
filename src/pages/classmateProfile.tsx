@@ -1,5 +1,5 @@
-import Rating from "@/core/components/rating";
-import SideBar from "@/core/components/Sidebar";
+import {Rating} from "@/core/components/rating";
+import {SideBar} from "@/core/components/Sidebar";
 import { TopBar } from "@/core/components/Topbar";
 import { Button } from "reactstrap";
 import styles from "src/styles/profile.module.css";
@@ -38,6 +38,7 @@ export default function classmateProfile() {
   for (let index in ratings) {
     htmlRatings.push(<Rating key={index} rating={ratings[index]}></Rating>);
   }
+
   return (
     <>
       <TopBar></TopBar>
@@ -49,9 +50,9 @@ export default function classmateProfile() {
           <div className={styles.avgRatingArea}>
             <div className={styles.overallRatingArea}>
               <span className={styles.overallRating}>{overall.rating}</span>/5
+              <div><Button className={styles.rateButton}>Rate</Button></div>
             </div>
             <h4></h4>
-            <div><Button>Next</Button></div>
             <div>
               <div className={styles.avgRatingDistribution}>
                 <div className={styles.title}>Average Rating Distribution</div>

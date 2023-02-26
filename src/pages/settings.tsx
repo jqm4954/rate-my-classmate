@@ -1,5 +1,5 @@
-import Rating from "@/core/components/rating";
-import SideBar from "@/core/components/Sidebar";
+import {Rating} from "@/core/components/rating";
+import {SideBar} from "@/core/components/Sidebar";
 import { TopBar } from "@/core/components/Topbar";
 import styles from "src/styles/settings.module.css";
 
@@ -29,13 +29,15 @@ export default function Profile() {
 
                 <div className={styles.name_outer}>
                         <div className={styles.change_name}>change</div>
-                        <div className={styles.name_inner}></div>
+                        <div className={styles.name_inner}>{settings.name}</div>
                 </div>
                 <div className={styles.major_outer}>
-                        <div className={styles.major_inner}></div>
+                        <div className={styles.change_major}>change</div>
+                        <div className={styles.major_inner}>{settings.major}</div>
                 </div>
                 <div className={styles.password_outer}>
-                        <div className={styles.password_inner}></div>
+                        <div className={styles.change_password}>change</div>
+                        <div className={styles.password_inner}>{settings.change_pass}</div>
                 </div>
             </div>
         </div>
