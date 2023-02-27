@@ -40,10 +40,9 @@ export default function classmateProfile() {
   for (let index in ratings) {
     htmlRatings.push(<Rating key={index} rating={ratings[index]}></Rating>);
   }
-
+  //define submitRate
   const {isOpen, toggle} = useModal();
 
-  // const hook for submit Rate 
 
   return (
     <>
@@ -62,7 +61,6 @@ export default function classmateProfile() {
               <span className={styles.overallRating}>{overall.rating}</span>/5
               <div><Button onClick={toggle} className={styles.rateButton}style ={{borderRadius: 10, overflow: 'hidden'}}>Rate</Button></div>
             </div>
-            <h4></h4>
             <div>
               <div className={styles.avgRatingDistribution}>
                 <div className={styles.title}>Average Rating Distribution</div>

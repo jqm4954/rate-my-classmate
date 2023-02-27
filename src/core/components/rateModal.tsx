@@ -8,36 +8,32 @@ interface RateModalProps {
     rateName: string;
     submitRate: () => void;
 }
-
+//from classmateprofile
 export const RateModal: FunctionComponent<RateModalProps> = (props) => {
-    //const [modalOpen, setModalOpen] = useState(initialMode)  //data within modal 
+    
     return (
         <Modal isOpen={props.isOpen} toggle={props.toggle}>
             <ModalHeader>
-                {props.message}
+                Rate {props.rateName}
             </ModalHeader>
             <ModalBody>
-                <Label for="field1" value = {props.rateName}>Name</Label>
-                <Input id="field1" name="name"
-                       type="text"/> 
-                <Label for="field2">Technical Ability</Label>
-                <Input id="field2" last_name="technical"
+                <Label for="field1">Technical Ability</Label>
+                <Input id="field1" last_name="technical"
                        type="text"/>
-                <Label for="field3">Effort</Label>
-                <Input id="field3" name="effort"
+                <Label for="field2">Effort</Label>
+                <Input id="field2" name="effort"
                        type="text"/>
-
-                <Label for="field4">Socialbility</Label>
-                <Input id="field4" name="socaibility"
+                <Label for="field3">Socialbility</Label>
+                <Input id="field3" name="socaibility"
                        type="text"/>
-                <Label for="field5">Contribution</Label>
-                <Input id="field5" name="contribution"
+                <Label for="field4">Contribution</Label>
+                <Input id="field4" name="contribution"
                        type="text"/>
-                <Label for="field6">Comments:</Label>
-                <Input id="field6" name="comments"
+                <Label for="field5">Comments:</Label>
+                <Input id="field5" name="comments"
                        type="text"/>
-                <Label for="field7">Overall Rating</Label>
-                <Input id="field7" name="overall"
+                <Label for="field6">Overall Rating</Label>
+                <Input id="field6" name="overall"
                        type="text"/>
             </ModalBody>
             <ModalFooter>
