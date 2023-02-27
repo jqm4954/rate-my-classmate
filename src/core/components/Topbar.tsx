@@ -2,7 +2,7 @@ import styles from 'src/styles/topbar.module.css';
 
 export function TopBar() {
     const signOut = () => {
-
+        // TODO: Sign out API call
     }
 
     return (

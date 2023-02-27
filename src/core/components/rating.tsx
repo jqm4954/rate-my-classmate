@@ -27,7 +27,7 @@ export function Rating(props: any) {
         style={boxColor}>{numberRating}</div>
     </div>;
     breakdown.push(ratingBlock);
-    if(indexOfSection < ratingBreakdownSections.length - 1) {
+    if (indexOfSection < ratingBreakdownSections.length - 1) {
       breakdown.push(<div className={styles.breakdownSeparator} key={`divider-${indexOfSection}`}></div>)
     }
   }
