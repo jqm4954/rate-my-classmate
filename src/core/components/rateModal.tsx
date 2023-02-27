@@ -1,57 +1,48 @@
-import React, { FunctionComponent } from 'react';
-import {Input,Container, Row, Col,Button, Modal, ModalHeader, Alert, Label, ModalBody, ModalFooter} from 'reactstrap';
+import React, {FunctionComponent} from 'react';
+import {Button, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
 interface RateModalProps {
-  onConfirm: () => void;
-  onCancel: () => void;
-  addclassMateName: () => void;
-  addtechnicalAbility: () => void;
-  addEffort: () => void;
-  addSociability: () => void;
-  addContributions: () => void;
-  addOverallRating: () => void;
-  message: string;
+    isOpen: boolean;
+    toggle: () => void;
+    message?: string
 }
 
 export const RateModal: FunctionComponent<RateModalProps> = (props) => {
-  return (
-    <React.Fragment>
-        <h1>{props.message}</h1>
-        <div>
+    return (
+        <Modal isOpen={props.isOpen} toggle={props.toggle}>
+            <ModalHeader>
+                {props.message}
+            </ModalHeader>
+            <ModalBody>
+                <Label for="field1">name</Label>
+                <Input id="field1" name="title"
+                       type="text"/> {}
+                <Label for="field2">Techical Ability</Label>
+                <Input id="field2" last_name="issueNum"
+                       type="text"/>
+                <Label for="field3">Effort</Label>
+                <Input id="field3" name="pub"
+                       type="text"/>
 
-    <ModalBody>
-    <Label for="field1">name</Label>
-    <Input id="field1"  name="title"
-            type="text"   onChIssueange={props.addclassMateName}  /> {}
-    <Label for="field2">Techical Ability</Label>
-    <Input id="field2"  last_name="issueNum"
-            type="text"   onChange={props.addtechnicalAbility}/>
-    <Label for="field3">Effort</Label>
-    <Input id="field3"  name="pub"
-            type="text"   onChange={props.addEffort}/>
-
-    <Label for="field4">Socialbility</Label>
-    <Input id="field4"  name="pub_date"
-            type="text"  onChange={props.addSociability} />
-     <Label for="field5">Contribution</Label>
-    <Input id="field5"  name="creators"
-            type="text"  onChange={props.addContributions} />
-     <Label for="field6">Comments:</Label>
-    <Input id="field6"  name="creators"
-            type="text"  />
-     <Label for="field7">Overall Rating</Label>
-    <Input id="field7"  name="creators"
-            type="text"  />
-    </ModalBody>
-    <ModalFooter>
-    <Button color='success' onClick={props.onConfirm}>Rate</Button>
-    </ModalFooter>
-
-
-
-</div>
-    </React.Fragment>
-  );
+                <Label for="field4">Socialbility</Label>
+                <Input id="field4" name="pub_date"
+                       type="text"/>
+                <Label for="field5">Contribution</Label>
+                <Input id="field5" name="creators"
+                       type="text"/>
+                <Label for="field6">Comments:</Label>
+                <Input id="field6" name="creators"
+                       type="text"/>
+                <Label for="field7">Overall Rating</Label>
+                <Input id="field7" name="creators"
+                       type="text"/>
+            </ModalBody>
+            <ModalFooter>
+                <Button color='success'>Rate</Button>
+            </ModalFooter>
+        </Modal>
+    )
+        ;
 };
 
 /*

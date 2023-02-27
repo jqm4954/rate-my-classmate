@@ -41,12 +41,12 @@ export default function classmateProfile() {
     htmlRatings.push(<Rating key={index} rating={ratings[index]}></Rating>);
   }
 
-  const {modalOpen, toggle} = useModal();
+  const {isOpen, toggle} = useModal();
 
   return (
     <>
+      <RateModal isOpen={isOpen} toggle={toggle}/>
       <TopBar></TopBar>
-      {modalOpen ? <RateModal/> : <></>}
       <div className="flex">
         <SideBar></SideBar>
         <div className={styles.content}>
