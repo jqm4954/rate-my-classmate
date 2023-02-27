@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import {PrismaClient} from "@prisma/client";
+import {prisma} from "@/core/lib/prisma";
 import {getUniversityList} from "@/core/lib/helpers";
 
 type Data = {
@@ -28,8 +28,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     //add info to database
     if(req.method === "POST") {
 
-        const prisma = new PrismaClient()
-
         //data from request
         const {
             reviewerEmail,
@@ -56,7 +54,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             //If classmate isnt in the database yet
             //add classmate to database and set result to be the new classmate
-            const newClassmate = await prisma.profile.create({
+            const newClassmate = await prisma?.profile.create({
                 data: {
                     name: classmateName,
                     university: reviewerSchool.name,
@@ -65,7 +63,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             });
 
             //add the review to the given user
-            const classmate = await prisma.review.create({
+            const classmate = await prisma?.review.create({
                 data: {
                     profileId: newClassmate.id,
                     course_code: courseCode,

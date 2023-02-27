@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import {PrismaClient} from "@prisma/client";
 import {getUniversityList} from "@/core/lib/helpers";
+import {prisma} from "@/core/lib/prisma";
 
 //Data class based on rate_existing message body
 type Data = {
@@ -27,8 +27,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     //add info to database
     if(req.method === "POST") {
 
-        const prisma = new PrismaClient()
-
         //data from request
         const {
             reviewerEmail,
@@ -54,7 +52,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             // get classmate's data from database
             //TODO ISSUE: if multiple profiles exist with the same name and university this will only select the fiirst
             //possible fix is to pass in the profile id of the classmate that the user is trying to review?
-            const classmateProfile = await prisma.profile.findFirst({
+            const classmateProfile = await prisma?.profile.findFirst({
                 where: {
                     university: {
                         equals: reviewerSchool.name,
@@ -69,7 +67,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (classmateProfile === null) {
                res.status(412).json({message: "classmate does not exist yet, please use rate_nonexisting endpoint"});
             } else {
-                const classmate = await prisma.review.create({
+                const classmate = await prisma?.review.create({
                     data: {
                         profileId: classmateProfile.id,
                         course_code: courseCode,
