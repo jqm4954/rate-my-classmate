@@ -19,8 +19,8 @@ export const RateModal: FunctionComponent<RateModalProps> = (props) => {
             <ModalBody>
                 <Label for="field1" value = {props.rateName}>Name</Label>
                 <Input id="field1" name="name"
-                       type="text"/> {}
-                <Label for="field2">Techical Ability</Label>
+                       type="text"/> 
+                <Label for="field2">Technical Ability</Label>
                 <Input id="field2" last_name="technical"
                        type="text"/>
                 <Label for="field3">Effort</Label>
