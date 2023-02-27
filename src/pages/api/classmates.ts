@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 university: university
             }
         })
-    }
+        }
 
     //gets a list of all profiles from db
     if(req.method==="GET"){
