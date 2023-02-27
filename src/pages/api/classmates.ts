@@ -2,7 +2,7 @@
  * API route for handling getting a list of all profiles and creating a new one
  */
 import {NextApiRequest, NextApiResponse} from "next";
-import {PrismaClient} from "@prisma/client";
+import {prisma} from "@/core/lib/prisma";
 
 type Data = {
     name: string
@@ -11,8 +11,6 @@ type Data = {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-
-    const prisma = new PrismaClient()
 
     /**
      * Post endpoint for /api/classmate
@@ -24,9 +22,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         prisma.profile.create({
             data: {
-                name: name,
-                major: major,
-                university: university
+                name,
+                major,
+                university
             }
         })
         }
