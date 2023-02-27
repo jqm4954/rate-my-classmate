@@ -1,5 +1,5 @@
-import {PropsWithChildren} from "@/core/types";
-import {twMerge} from "tailwind-merge";
+import { PropsWithChildren } from "@/core/types";
+import { twMerge } from "tailwind-merge";
 
 type props = {
     className?: string,
