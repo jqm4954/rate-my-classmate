@@ -48,6 +48,7 @@ export const RateModal: FunctionComponent<RateModalProps> = (props) => {
     </ModalFooter>
 
 
+
 </div>
     </React.Fragment>
   );

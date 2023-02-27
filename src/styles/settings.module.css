@@ -63,9 +63,9 @@ line-height: 36px;
 }
 .name_outer
 {
+
 align-items: center;
 justify-content: flex-end;
-position: absolute;
 width: 901px;
 height: 75px;
 left: 388px;
@@ -78,7 +78,6 @@ border-radius: 15px;
 
 .name_inner
 {
-align-items: center;
 width: 60%;
 display: inline-block;
 height: 60px;
@@ -104,7 +103,6 @@ font-style: normal;
 font-weight: 600;
 font-size: 24px;
 line-height: 36px;
-display: flex;
 align-items: center;
 
 color: #9B9B9B;
@@ -154,7 +152,8 @@ color: #9B9B9B;
 width: 803px;
 height: 62px;
 left: 473px;
-top: 574px;
+
+justify-self: right;
 
 background: #F0F0DE;
 border: 1px solid #DADACC;
@@ -233,7 +232,6 @@ transform: rotate(90deg);
 }
 .password_outer{
     
-position: absolute;
 width: 901px;
 height: 75px;
 left: 388px;
@@ -243,7 +241,6 @@ background: #FBFBF2;
 border-radius: 15px;
 }
 .major_outer{
-position: absolute;
 width: 901px;
 height: 75px;
 left: 388px;

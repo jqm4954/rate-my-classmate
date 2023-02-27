@@ -28,12 +28,16 @@ export default function Profile() {
                 </div>
 
                 <div className={styles.name_outer}>
+                        <div className={styles.name_pre}>{name}</div>
                         <div className={styles.change_name}>change</div>
                         <div className={styles.name_inner}>{settings.name}</div>
+                        
+
                 </div>
                 <div className={styles.major_outer}>
                         <div className={styles.change_major}>change</div>
                         <div className={styles.major_inner}>{settings.major}</div>
+                        <div className={styles.name_pre}>{major}</div>
                 </div>
                 <div className={styles.password_outer}>
                         <div className={styles.change_password}>change</div>

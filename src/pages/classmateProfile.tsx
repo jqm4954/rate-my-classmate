@@ -1,6 +1,8 @@
+import { RateModal } from "@/core/components/rateModal";
 import {Rating} from "@/core/components/rating";
 import {SideBar} from "@/core/components/Sidebar";
 import { TopBar } from "@/core/components/Topbar";
+import { useModal } from "@/core/hooks/useModal";
 import { Button } from "reactstrap";
 import styles from "src/styles/profile.module.css";
 
@@ -39,9 +41,12 @@ export default function classmateProfile() {
     htmlRatings.push(<Rating key={index} rating={ratings[index]}></Rating>);
   }
 
+  const {modalOpen, toggle} = useModal();
+
   return (
     <>
       <TopBar></TopBar>
+      {modalOpen ? <RateModal/> : <></>}
       <div className="flex">
         <SideBar></SideBar>
         <div className={styles.content}>
@@ -50,7 +55,7 @@ export default function classmateProfile() {
           <div className={styles.avgRatingArea}>
             <div className={styles.overallRatingArea}>
               <span className={styles.overallRating}>{overall.rating}</span>/5
-              <div><Button className={styles.rateButton}>Rate</Button></div>
+              <div><Button onClick={toggle} className={styles.rateButton}style ={{borderRadius: 10, overflow: 'hidden'}}>Rate</Button></div>
             </div>
             <h4></h4>
             <div>
