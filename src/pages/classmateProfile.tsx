@@ -40,7 +40,7 @@ export default function classmateProfile() {
   for (let index in ratings) {
     htmlRatings.push(<Rating key={index} rating={ratings[index]}></Rating>);
   }
-  //define submitRate
+  
   const {isOpen, toggle} = useModal();
 
 

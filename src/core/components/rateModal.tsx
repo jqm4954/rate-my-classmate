@@ -17,23 +17,23 @@ export const RateModal: FunctionComponent<RateModalProps> = (props) => {
                 Rate {props.rateName}
             </ModalHeader>
             <ModalBody>
-                <Label for="field1">Technical Ability</Label>
-                <Input id="field1" last_name="technical"
+                <Label for="field1" >Technical Ability</Label>
+                <Input placeholder='0.0' id="field1" last_name="technical"
                        type="text"/>
                 <Label for="field2">Effort</Label>
-                <Input id="field2" name="effort"
+                <Input placeholder='0.0' id="field2" name="effort"
                        type="text"/>
                 <Label for="field3">Socialbility</Label>
-                <Input id="field3" name="socaibility"
+                <Input placeholder='0.0' id="field3" name="socaibility"
                        type="text"/>
                 <Label for="field4">Contribution</Label>
-                <Input id="field4" name="contribution"
+                <Input placeholder='0.0' id="field4" name="contribution"
                        type="text"/>
                 <Label for="field5">Comments:</Label>
                 <Input id="field5" name="comments"
                        type="text"/>
                 <Label for="field6">Overall Rating</Label>
-                <Input id="field6" name="overall"
+                <Input placeholder='0.0' id="field6" name="overall"
                        type="text"/>
             </ModalBody>
             <ModalFooter>
