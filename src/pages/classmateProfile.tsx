@@ -44,7 +44,9 @@ export default function classmateProfile() {
   const {isOpen, toggle} = useModal();
 
   const submitRate = (tech: number, effort: number, sociability : number, contributions: number, comments: string, overall: number) => {
-      //do this stuff 
+      alert(comments)
+      //request to api
+      //then backend work
   }
   return (
     <>
