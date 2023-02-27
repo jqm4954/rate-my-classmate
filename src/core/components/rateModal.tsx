@@ -42,7 +42,7 @@ export const RateModal: FunctionComponent<RateModalProps> = (props) => {
                 <Input placeholder='0.0' id="field4" name="contribution" onChange={(e) => setContributions(parseInt(e.target.value))}
                        type="text"/>
                 <Label for="field5">Comments:</Label>
-                <Input id="field5" name="comments" onChange={(e) => setComments(parseInt(e.target.value))}
+                <Input id="field5" name="comments" onChange={(e) => setComments(e.target.value)}
                        type="text"/>
                 <Label for="field6">Overall Rating</Label>
                 <Input placeholder='0.0' id="field6" name="overall" onChange={(e) => setOverall(parseInt(e.target.value))}/>
