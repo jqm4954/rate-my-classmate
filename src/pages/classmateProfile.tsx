@@ -43,10 +43,15 @@ export default function classmateProfile() {
 
   const {isOpen, toggle} = useModal();
 
+  // const hook for submit Rate 
+
   return (
     <>
-      <RateModal isOpen={isOpen} toggle={toggle}/>
       <TopBar></TopBar>
+      {isOpen ? <RateModal isOpen={isOpen} toggle={toggle} rateName = {name}
+      submitRate={function (): void {
+        throw new Error("Function not implemented.");
+      } }/> : <></>}
       <div className="flex">
         <SideBar></SideBar>
         <div className={styles.content}>

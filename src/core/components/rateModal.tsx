@@ -4,41 +4,44 @@ import {Button, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from '
 interface RateModalProps {
     isOpen: boolean;
     toggle: () => void;
-    message?: string
+    message?: string;
+    rateName: string;
+    submitRate: () => void;
 }
 
 export const RateModal: FunctionComponent<RateModalProps> = (props) => {
+    //const [modalOpen, setModalOpen] = useState(initialMode)  //data within modal 
     return (
         <Modal isOpen={props.isOpen} toggle={props.toggle}>
             <ModalHeader>
                 {props.message}
             </ModalHeader>
             <ModalBody>
-                <Label for="field1">name</Label>
-                <Input id="field1" name="title"
+                <Label for="field1" value = {props.rateName}>Name</Label>
+                <Input id="field1" name="name"
                        type="text"/> {}
                 <Label for="field2">Techical Ability</Label>
-                <Input id="field2" last_name="issueNum"
+                <Input id="field2" last_name="technical"
                        type="text"/>
                 <Label for="field3">Effort</Label>
-                <Input id="field3" name="pub"
+                <Input id="field3" name="effort"
                        type="text"/>
 
                 <Label for="field4">Socialbility</Label>
-                <Input id="field4" name="pub_date"
+                <Input id="field4" name="socaibility"
                        type="text"/>
                 <Label for="field5">Contribution</Label>
-                <Input id="field5" name="creators"
+                <Input id="field5" name="contribution"
                        type="text"/>
                 <Label for="field6">Comments:</Label>
-                <Input id="field6" name="creators"
+                <Input id="field6" name="comments"
                        type="text"/>
                 <Label for="field7">Overall Rating</Label>
-                <Input id="field7" name="creators"
+                <Input id="field7" name="overall"
                        type="text"/>
             </ModalBody>
             <ModalFooter>
-                <Button color='success'>Rate</Button>
+                <Button onClick={props.submitRate} color='success'>Rate</Button>
             </ModalFooter>
         </Modal>
     )
