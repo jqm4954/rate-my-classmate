@@ -49,21 +49,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     university.domains.find((domain) => reviewerEmail.includes(domain))
                 )
             );
-        //
-        // if (reviewerSchool) {
-        //     // get classmate's data from database
-        //     //TODO ISSUE: if multiple profiles exist with the same name and university this will only select the fiirst
-        //     //possible fix is to pass in the profile id of the classmate that the user is trying to review?
-        //     const classmateProfile = await prisma.profile.findFirst({
-        //         where: {
-        //             university: {
-        //                 equals: reviewerSchool.name,
-        //             },
-        //             name: {
-        //                 equals: classmateName
-        //             }
-        //         }
-        //     })
+
+        if (reviewerSchool) {
+            // get classmate's data from database
+            //TODO ISSUE: if multiple profiles exist with the same name and university this will only select the fiirst
+            //possible fix is to pass in the profile id of the classmate that the user is trying to review?
+            // const classmateProfile = await prisma.profile.findFirst({
+            //     where: {
+            //         university: {
+            //             equals: reviewerSchool.name,
+            //         },
+            //         name: {
+            //             equals: classmateName
+            //         }
+            //     }
+            // })
 
             //If classmate isnt in the database yet
             // if (classmateProfile === null) {
@@ -84,8 +84,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
                 res.status(200);
             }
-        // } else {
-        //     res.status(400).json("Issue retrieving user's university from email");
-        // }
-    // }
+    //     } else {
+    //         res.status(400).json("Issue retrieving user's university from email");
+    //     }
+    }
 }

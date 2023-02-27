@@ -1,14 +1,14 @@
-// /**
-//  * API route for handling getting a list of all profiles and creating a new one
-//  */
-// import {NextApiRequest, NextApiResponse} from "next";
-// import {PrismaClient} from "@prisma/client";
-//
-// type Data = {
-//     name: string
-//     major: string
-//     university: string
-// }
+/**
+ * API route for handling getting a list of all profiles and creating a new one
+ */
+import {NextApiRequest, NextApiResponse} from "next";
+import {PrismaClient} from "@prisma/client";
+
+type Data = {
+    name: string
+    major: string
+    university: string
+}
 //
 // export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 //
