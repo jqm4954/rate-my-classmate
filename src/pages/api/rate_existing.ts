@@ -54,24 +54,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             // get classmate's data from database
             //TODO ISSUE: if multiple profiles exist with the same name and university this will only select the fiirst
             //possible fix is to pass in the profile id of the classmate that the user is trying to review?
-            // const classmateProfile = await prisma.profile.findFirst({
-            //     where: {
-            //         university: {
-            //             equals: reviewerSchool.name,
-            //         },
-            //         name: {
-            //             equals: classmateName
-            //         }
-            //     }
-            // })
+            const classmateProfile = await prisma.profile.findFirst({
+                where: {
+                    university: {
+                        equals: reviewerSchool.name,
+                    },
+                    name: {
+                        equals: classmateName
+                    }
+                }
+            })
 
             //If classmate isnt in the database yet
-            // if (classmateProfile === null) {
-            //    res.status(412).json({message: "classmate does not exist yet, please use rate_nonexisting endpoint"});
-            // } else {
+            if (classmateProfile === null) {
+               res.status(412).json({message: "classmate does not exist yet, please use rate_nonexisting endpoint"});
+            } else {
                 const classmate = await prisma.review.create({
                     data: {
-                        // profileId: classmateProfile.id,
+                        profileId: classmateProfile.id,
                         course_code: courseCode,
                         overall: overallRating,
                         technical: technicalAbility,
@@ -84,8 +84,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
                 res.status(200);
             }
-    //     } else {
-    //         res.status(400).json("Issue retrieving user's university from email");
-    //     }
+        } else {
+            res.status(400).json("Issue retrieving user's university from email");
+        }
     }
 }
