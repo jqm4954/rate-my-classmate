@@ -1,16 +1,22 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useState} from 'react';
 import {Button, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
 interface RateModalProps {
+    rateName: string;
     isOpen: boolean;
     toggle: () => void;
     message?: string;
-    rateName: string;
-    submitRate: () => void;
+    submitRate: (tech: number, tech2: number, tech3: number) => void;
 }
-//from classmateprofile
+
+
 export const RateModal: FunctionComponent<RateModalProps> = (props) => {
-    
+    const [techAbility, setTechAbility] = useState(0);
+
+    const handleSubmit = () => {
+        props.submitRate(techAbility, techAbility, techAbility)
+    }
+
     return (
         <Modal isOpen={props.isOpen} toggle={props.toggle}>
             <ModalHeader>
@@ -33,11 +39,10 @@ export const RateModal: FunctionComponent<RateModalProps> = (props) => {
                 <Input id="field5" name="comments"
                        type="text"/>
                 <Label for="field6">Overall Rating</Label>
-                <Input placeholder='0.0' id="field6" name="overall"
-                       type="text"/>
+                <Input placeholder='0.0' id="field6" name="overall"/>
             </ModalBody>
             <ModalFooter>
-                <Button onClick={props.submitRate} color='success'>Rate</Button>
+                <Button onClick={handleSubmit} color='success'>Rate</Button>
             </ModalFooter>
         </Modal>
     )
