@@ -6,15 +6,21 @@ interface RateModalProps {
     isOpen: boolean;
     toggle: () => void;
     message?: string;
-    submitRate: (tech: number, tech2: number, tech3: number) => void;
+    submitRate: (tech: number, effort: number, sociability: number, contribution: number, comments: string, overallRating: number) => void;
 }
 
 
 export const RateModal: FunctionComponent<RateModalProps> = (props) => {
     const [techAbility, setTechAbility] = useState(0);
+    const [effort, setEffort] = useState(0);
+    const [sociability, setSociability] = useState(0);
+    const [contributions, setContributions] = useState(0);
+    const [comments, setComments] = useState("");
+    const [overall, setOverall] = useState(0);
+
 
     const handleSubmit = () => {
-        props.submitRate(techAbility, techAbility, techAbility)
+        props.submitRate(techAbility, effort, sociability, contributions, comments, overall)
     }
 
     return (
@@ -24,22 +30,22 @@ export const RateModal: FunctionComponent<RateModalProps> = (props) => {
             </ModalHeader>
             <ModalBody>
                 <Label for="field1" >Technical Ability</Label>
-                <Input placeholder='0.0' id="field1" last_name="technical"
+                <Input placeholder='0.0' id="field1" last_name="technical" onChange={(e) => setTechAbility(parseInt(e.target.value))}
                        type="text"/>
                 <Label for="field2">Effort</Label>
-                <Input placeholder='0.0' id="field2" name="effort"
+                <Input placeholder='0.0' id="field2" name="effort" onChange={(e) => setEffort(parseInt(e.target.value))}
                        type="text"/>
                 <Label for="field3">Socialbility</Label>
-                <Input placeholder='0.0' id="field3" name="socaibility"
+                <Input placeholder='0.0' id="field3" name="socaibility" onChange={(e) => setSociability(parseInt(e.target.value))}
                        type="text"/>
                 <Label for="field4">Contribution</Label>
-                <Input placeholder='0.0' id="field4" name="contribution"
+                <Input placeholder='0.0' id="field4" name="contribution" onChange={(e) => setContributions(parseInt(e.target.value))}
                        type="text"/>
                 <Label for="field5">Comments:</Label>
-                <Input id="field5" name="comments"
+                <Input id="field5" name="comments" onChange={(e) => setComments(parseInt(e.target.value))}
                        type="text"/>
                 <Label for="field6">Overall Rating</Label>
-                <Input placeholder='0.0' id="field6" name="overall"/>
+                <Input placeholder='0.0' id="field6" name="overall" onChange={(e) => setOverall(parseInt(e.target.value))}/>
             </ModalBody>
             <ModalFooter>
                 <Button onClick={handleSubmit} color='success'>Rate</Button>

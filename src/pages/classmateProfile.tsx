@@ -43,12 +43,12 @@ export default function classmateProfile() {
   
   const {isOpen, toggle} = useModal();
 
-  const submitRate = (tech: number, tech2: number, tech3: number) => {
-
+  const submitRate = (tech: number, effort: number, sociability : number, contributions: number, comments: string, overall: number) => {
+      //do this stuff 
   }
   return (
     <>
-      <RateModal isOpen={isOpen} toggle={toggle}/>
+      <RateModal isOpen={isOpen} toggle={toggle} submitRate={submitRate} rateName={name}/>
       <TopBar></TopBar>
       <div className="flex">
         <SideBar></SideBar>
