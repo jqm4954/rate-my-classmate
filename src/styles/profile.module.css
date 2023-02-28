@@ -1,3 +1,5 @@
+@import "./animations.module.css";
+
 .content {
   width: calc(100% - 250px);
   padding: 20px;
@@ -32,6 +34,8 @@
   padding: 0px 12px 25px 12px;
   width: 827px;
   height: fit-content;
+  animation-name: fadeIn;
+  animation-duration: 0.2s;
 }
 
 .title {
@@ -63,7 +67,7 @@
   border: 3px solid #5F5455;
   border-radius: 2px;
   padding: 2px;
-  margin: 0px 10px 0px 10px; 
+  margin: 0px 10px 0px 10px;
 }
 
 .distributionProgress {
@@ -96,7 +100,8 @@
   font-weight: 700;
   font-size: 36px;
 }
-.rateButton{
+
+.rateButton {
   background-color: #A6A2A2;
   min-width: 100%;
   width: 100%;

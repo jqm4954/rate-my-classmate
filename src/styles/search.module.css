@@ -23,7 +23,8 @@
 }
 
 .searchBar:focus-within {
-  border-color: #847577;
+  transition: all 0.2s ease;
+  border-color: #8475774a;
 }
 
 .searchInput {
@@ -68,7 +69,8 @@
 }
 
 .result:hover {
-  border-color: #847577;
+  transition: all 0.1s ease;
+  border-color: #8475774a;
 }
 
 .resultLeft {

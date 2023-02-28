@@ -67,7 +67,7 @@ export default function Profile() {
             <div className={styles.overallRatingArea}>
               <span className={styles.overallRating}>{overall.rating}</span>/5
             </div>
-            <div>
+            <div className={styles.avgRatingHolder}>
               <div className={styles.avgRatingDistribution}>
                 <div className={styles.title}>Average Rating Distribution</div>
                 {htmlRatingRows}
