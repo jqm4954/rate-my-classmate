@@ -96,3 +96,8 @@
   font-weight: 700;
   font-size: 36px;
 }
+.rateButton{
+  background-color: #A6A2A2;
+  min-width: 100%;
+  width: 100%;
+}
