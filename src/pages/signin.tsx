@@ -30,7 +30,7 @@ export default function Signin() {
         <div className={"min-h-screen flex justify-center items-center"}>
             <div className={"bg-gray shadow-lg rounded-2xl p-12 w-[32rem]"}>
                 <div>
-                    <h1 className={"font-bold text-3xl text-brown drop-shadow text-center"}>Rate My Milkdud</h1>
+                    <h1 className={"font-bold text-3xl text-brown drop-shadow text-center"}>Rate My Classmate</h1>
                 </div>
                 <div className={"mt-9"}>
                     <div className={"flex flex-col"}>
