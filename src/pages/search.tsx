@@ -26,15 +26,20 @@ export default function Profile() {
     //     rating: 3.8
     //   },
     // ];
-    const users = 
-    let newUsers = [];
+
+    const result = await fetch('/api/classmates', {
+      method: "GET",
+      body: JSON.stringify({ email, password })
+    });
+
     if (query.length > 0) {
-      for (let user of users) {
+      for (let user of z) {
         if (user.name.toLowerCase().includes(query) || user.major.toLowerCase().includes(query)) {
           newUsers.push(user);
         }
       }
     }
+
     setResults(newUsers);
   }
 
