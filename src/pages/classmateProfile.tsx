@@ -60,7 +60,7 @@ export default function classmateProfile() {
           <div className={styles.avgRatingArea}>
             <div className={styles.overallRatingArea}>
               <span className={styles.overallRating}>{overall.rating}</span>/5
-              <div><Button onClick={toggle} className={styles.rateButton}style ={{borderRadius: 10, overflow: 'hidden'}}>Rate</Button></div>
+              <div className={styles.rateButton} onClick={toggle}>Rate</div>
             </div>
             <div>
               <div className={styles.avgRatingDistribution}>
