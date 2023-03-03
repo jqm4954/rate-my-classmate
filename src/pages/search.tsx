@@ -1,5 +1,6 @@
 import { TopBar, SideBar } from "@/core/components";
 import { FormEvent, MouseEventHandler, useState } from "react";
+import {prisma} from "@/core/lib/prisma";
 import styles from "src/styles/search.module.css";
 
 export default function Profile() {
@@ -10,6 +11,8 @@ export default function Profile() {
 
   const handleQuery = (e: FormEvent<HTMLInputElement>) => {
     // TODO: make the API call to get the search results
+    const uni = 'Rochester Institute of Technology'
+    const result = await prisma.$queryRaw`SELECT * FROM Profile WHERE university = ${uni}`
     const query = e.currentTarget.value.toLowerCase();
     const users = [
       {
