@@ -46,5 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (classmates !== null) {
             res.status(200).json({Result: classmates})
         }
+
+        res.status(400);
     }
 }
