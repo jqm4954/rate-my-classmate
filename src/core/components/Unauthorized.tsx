@@ -12,7 +12,6 @@ export const Unauthorized = () => {
                     <h1 className={"text-4xl font-bold"}>You seem lost...</h1>
                     <p>This page may not exist, or you are not authorized to access it.</p>
                     <ul className={"ml-12"} style={{listStyle: "circle"}}>
-                        <li><a className={"underline"} href={"/"}>Home</a></li>
                         <li><a className={"underline"} href={"/signin"}>Sign in</a></li>
                         <li><a className={"underline"} href={"/support"}>Support</a></li>
                     </ul>

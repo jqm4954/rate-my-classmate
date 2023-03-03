@@ -40,7 +40,6 @@ const useUser = () => {
                 };
                 setUserCookie(userData);
                 setUser(userData);
-                router.push("/profile")
             } else {
                 removeUserCookie();
                 setUser(undefined);
