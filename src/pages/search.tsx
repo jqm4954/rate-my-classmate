@@ -9,26 +9,24 @@ export default function Profile() {
   const [results, setResults] = useState(placeholder);
   let htmlResults = [];
 
-  const handleQuery = (e: FormEvent<HTMLInputElement>) => {
-    // TODO: make the API call to get the search results
-    const uni = 'Rochester Institute of Technology'
-    const result = await prisma.$queryRaw`SELECT * FROM Profile WHERE university = ${uni}`
+  const handleQuery = async (e: FormEvent<HTMLInputElement>) => {
     const query = e.currentTarget.value.toLowerCase();
-    const users = [
-      {
-        name: "A super duper long name",
-        major: "Some major that has a really long name you idiot",
-        rating: 2.5
-      }, {
-        name: "Kamala Harris",
-        major: "Computer Science",
-        rating: 2.2
-      }, {
-        name: "Obamna",
-        major: "Computing Security",
-        rating: 3.8
-      },
-    ];
+    // const users = [
+    //   {
+    //     name: "A super duper long name",
+    //     major: "Some major that has a really long name you idiot",
+    //     rating: 2.5
+    //   }, {
+    //     name: "Kamala Harris",
+    //     major: "Computer Science",
+    //     rating: 2.2
+    //   }, {
+    //     name: "Obamna",
+    //     major: "Computing Security",
+    //     rating: 3.8
+    //   },
+    // ];
+    const users = 
     let newUsers = [];
     if (query.length > 0) {
       for (let user of users) {
