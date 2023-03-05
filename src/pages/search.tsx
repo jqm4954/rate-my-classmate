@@ -3,8 +3,7 @@ import { FormEvent, MouseEventHandler, useState } from "react";
 import {prisma} from "@/core/lib/prisma";
 import styles from "src/styles/search.module.css";
 
-export default function Profile() {
-  //comment for CICD
+export default function Search() {
   let placeholder: any[] = [];
   const [results, setResults] = useState(placeholder);
   let htmlResults = [];
@@ -29,11 +28,12 @@ export default function Profile() {
 
     const result = await fetch('/api/classmates', {
       method: "GET",
-      body: JSON.stringify({ email, password })
+      //commenting this to test deploment
+      //body: JSON.stringify({ email, password })
     });
-
+    let newUsers = [];
     if (query.length > 0) {
-      for (let user of z) {
+      for (let user of results) {
         if (user.name.toLowerCase().includes(query) || user.major.toLowerCase().includes(query)) {
           newUsers.push(user);
         }
