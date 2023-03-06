@@ -2,6 +2,8 @@ import { TopBar, SideBar } from "@/core/components";
 import { FormEvent, MouseEventHandler, useState } from "react";
 import {prisma} from "@/core/lib/prisma";
 import styles from "src/styles/search.module.css";
+import {useUser} from "@/core/hooks";
+import {getUniversityList} from "@/core/lib/helpers";
 
 export default function Search() {
   let placeholder: any[] = [];
@@ -26,11 +28,27 @@ export default function Search() {
     //   },
     // ];
 
-    const result = await fetch('/api/classmates', {
-      method: "GET",
-      //commenting this to test deploment
-      //body: JSON.stringify({ email, password })
-    });
+    let userEmail = useUser().user?.email;
+
+
+    if(userEmail !== null && userEmail !== undefined) {
+      const university = await getUniversityList()
+          .then((universities) =>
+              universities.find((university) =>
+                  university.domains.find((domain) => userEmail!.includes(domain))
+              )
+          );
+
+      const result = await fetch('/api/classmates', {
+        method: "GET",
+        //commenting this to test deploment
+        body: JSON.stringify({ query, university})
+      });
+      //TODO: I dont think this data is ever used??
+    }
+
+
+
     let newUsers = [];
     if (query.length > 0) {
       for (let user of results) {
