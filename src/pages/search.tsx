@@ -44,21 +44,18 @@ export default function Search() {
         //commenting this to test deploment
         body: JSON.stringify({ query, university})
       });
-      //TODO: I dont think this data is ever used??
-    }
 
-
-
-    let newUsers = [];
-    if (query.length > 0) {
-      for (let user of results) {
-        if (user.name.toLowerCase().includes(query) || user.major.toLowerCase().includes(query)) {
-          newUsers.push(user);
+      let newUsers = [];
+      if (query.length > 0) {
+        for (let user of await result.json()){
+          if (user.name.toLowerCase().includes(query) || user.major.toLowerCase().includes(query)) {
+            newUsers.push(user);
+          }
         }
       }
-    }
 
-    setResults(newUsers);
+      setResults(newUsers);
+    }
   }
 
   const redirectToProfile = (event: any, user: any) => {
