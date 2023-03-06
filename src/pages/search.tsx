@@ -30,6 +30,11 @@ export default function Search() {
 
     let userEmail = useUser().user?.email;
 
+    await fetch('/api/test_data', {
+      method: "POST",
+      body: "test data"
+    });
+
 
     if(userEmail !== null && userEmail !== undefined) {
       const university = await getUniversityList()
