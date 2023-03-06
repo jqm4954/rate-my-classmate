@@ -44,7 +44,7 @@ export default function Search() {
               )
           );
 
-      const result = await fetch('/api/classmates', {
+      const result = await fetch('/api/search', {
         method: "GET",
         //commenting this to test deploment
         body: JSON.stringify({ query, university})
