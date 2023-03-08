@@ -1,6 +1,3 @@
-// import {NextApiRequest, NextApiResponse} from 'next';
-// import {prisma} from "@/core/lib/prisma";
-
 import {NextApiRequest, NextApiResponse} from "next";
 import {prisma} from "@/core/lib/prisma";
 
