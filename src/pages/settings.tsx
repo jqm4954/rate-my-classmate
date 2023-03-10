@@ -1,6 +1,8 @@
 import {Rating} from "@/core/components/rating";
 import {SideBar} from "@/core/components/Sidebar";
 import { TopBar } from "@/core/components/Topbar";
+import { FormEventHandler } from "react";
+import { Input } from "reactstrap";
 import styles from "src/styles/settings.module.css";
 
 export default function Profile() {
@@ -13,6 +15,15 @@ export default function Profile() {
     prof_major: major,
     change_pass: "Change Password",
     major: "Major"
+  }
+  const updateName = (name : string) => {
+    //handle name udpate 
+  }
+  const updateMajor = (major : string) => {
+    //handle name udpate 
+  }
+  const updatePass = (pass : string) => {
+    //handle name udpate 
   }
 
   return (
@@ -29,19 +40,24 @@ export default function Profile() {
 
                 <div className={styles.name_outer}>
                         <div className={styles.name_pre}>{name}</div>
-                        <div className={styles.change_name}>change</div>
-                        <div className={styles.name_inner}>{settings.name}</div>
-                        
+                        <div className={styles.changeName} onClick={() => {updateName}}></div>
+                        <div className={styles.name_inner}>
+                         <Input placeholder={settings.name} id="nameChange" name="Name"></Input>
+                        </div>
 
                 </div>
                 <div className={styles.major_outer}>
-                        <div className={styles.change_major}>change</div>
-                        <div className={styles.major_inner}>{settings.major}</div>
                         <div className={styles.name_pre}>{major}</div>
+                        <div className={styles.changeMajor} onClick={() => {updateMajor}}></div>
+                        <div className={styles.major_inner}> 
+                          <Input placeholder={settings.major} id="majorChange" name="Major"></Input>
+                        </div>
                 </div>
                 <div className={styles.password_outer}>
-                        <div className={styles.change_password}>change</div>
-                        <div className={styles.password_inner}>{settings.change_pass}</div>
+                        <div className={styles.changeName} onClick={() => {updatePass}}></div>
+                        <div className={styles.password_inner}>
+                            <Input placeholder={settings.change_pass} id="passChange" name="Password"></Input>
+                        </div>
                 </div>
             </div>
         </div>
