@@ -1,9 +1,8 @@
-import {Layout} from "@/core/components/Layout";
 import Image from "next/image";
 
 export const Unauthorized = () => {
     return (
-        <Layout className={"flex flex-col justify-center items-center"}>
+        <div className={"min-h-screen flex flex-col justify-center items-center"}>
             <div className={"flex"}>
                 <div>
                     <Image src={"lost.svg"} width={300} height={300} alt={""}/>
@@ -17,6 +16,6 @@ export const Unauthorized = () => {
                     </ul>
                 </div>
             </div>
-        </Layout>
+        </div>
     );
 }

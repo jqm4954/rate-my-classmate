@@ -42,6 +42,7 @@ const useUser = () => {
                 setUserCookie(userData);
                 setUser(userData);
                 switch (router.pathname) {
+                    case "/signup":
                     case "/signin":
                         router.push("/profile")
                         break;
@@ -49,7 +50,6 @@ const useUser = () => {
             } else {
                 removeUserCookie();
                 setUser(undefined);
-                router.push("/signin");
             }
             setLoading(false);
         })
