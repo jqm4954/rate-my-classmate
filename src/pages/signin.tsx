@@ -53,8 +53,8 @@ export default function Signin() {
                     )}
                     <div className={"items-start mt-9 flex flex-col"}>
                         <div className={"flex w-full justify-between"}>
-                            <a className={"underline text-brown font-semibold"}>Forgot Password</a>
-                            <a href={"/signup"} className={"underline text-brown font-semibold"}>Sign Up</a>
+                            {/* <a className={"underline text-brown font-semibold"}>Forgot Password</a> */}
+                            <a href={"/signup"} className={"ml-auto underline text-brown font-semibold"}>Sign Up</a>
                         </div>
                         <div className={"w-full mt-1.5"}>
                             <button onClick={handleSignin}

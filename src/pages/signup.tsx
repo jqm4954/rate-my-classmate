@@ -61,6 +61,16 @@ export default function Signup() {
                     <h1 className={"font-bold text-3xl text-brown drop-shadow text-center"}>Rate My Classmate</h1>
                 </div>
                 <div className={"mt-9"}>
+                    <div className={"mb-9"}>
+                        <div className={"w-full mt-1.5"}>
+                            <a href={"/signin"}>
+                                <button
+                                    className={"w-full rounded-lg py-1.5 bg-brown text-lg text-white font-semibold shadow-md disabled:opacity-75"}>
+                                    Back to Sign in
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                     <div className={"space-y-3"}>
                         <div className={"flex flex-col"}>
                             <label className={"font-semibold text-lg text-brown"}>Name</label>
