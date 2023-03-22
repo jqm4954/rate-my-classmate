@@ -1,21 +1,24 @@
-import React, { FormEvent, useState } from "react";
-import { signInWithEmailAndPassword } from "@firebase/auth";
-import { useUser } from "@/core/hooks";
-import { auth } from "@/core/firebase";
+import React, {FormEvent, useState} from "react";
+import {signInWithEmailAndPassword} from "@firebase/auth";
+import {useUser} from "@/core/hooks";
+import {auth} from "@/core/firebase";
+import {ImSpinner9} from "react-icons/im";
 
 
 export default function Signin() {
     const [error, setError] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { user, logout } = useUser();
+    const {user, logout} = useUser();
+    const [loading, setLoading] = useState(false);
 
-    const handleSignin = async (e: FormEvent) => {
-        await signInWithEmailAndPassword(auth, email, password)
+    const handleSignin = (e: FormEvent) => {
+        setLoading(true)
+        signInWithEmailAndPassword(auth, email, password)
             .catch((error) => {
                 console.error(error.code, error.message);
                 setError(error.message);
-            });
+            }).then(() => setLoading(false));
     }
 
     const handleEmail = (e: FormEvent<HTMLInputElement>) => {
@@ -36,12 +39,12 @@ export default function Signin() {
                     <div className={"flex flex-col"}>
                         <label className={"font-semibold text-lg text-brown"}>Email</label>
                         <input onInput={handleEmail} type={"email"}
-                            className={"bg-eggWhite rounded-lg shadow-md px-3 py-1.5"} />
+                               className={"bg-eggWhite rounded-lg shadow-md px-3 py-1.5"}/>
                     </div>
                     <div className={"flex flex-col mt-3"}>
                         <label className={"font-semibold text-lg text-brown"}>Password</label>
                         <input onInput={handlePassword} type={"password"}
-                            className={"bg-eggWhite rounded-lg shadow-md px-3 py-1.5"} />
+                               className={"bg-eggWhite rounded-lg shadow-md px-3 py-1.5"}/>
                     </div>
                     {error.length > 0 && (
                         <div>
@@ -55,8 +58,8 @@ export default function Signin() {
                         </div>
                         <div className={"w-full mt-1.5"}>
                             <button onClick={handleSignin}
-                                className={"w-full rounded-lg py-1.5 bg-brown text-lg text-white font-semibold shadow-md"}>
-                                Sign In
+                                    className={"w-full flex items-center justify-center rounded-lg py-1.5 bg-brown text-lg text-white font-semibold shadow-md hover:opacity-80 transition-all duration-100"}>
+                                {loading ? <ImSpinner9 color={"red"} className={"animate-spin h-6 w-6 z-40 text-white"}/> : "Sign In"}
                             </button>
                         </div>
                     </div>

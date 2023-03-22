@@ -1,4 +1,4 @@
-import { Rating, SideBar, TopBar } from "@/core/components";
+import {Layout, Rating, SideBar, TopBar} from "@/core/components";
 import styles from "src/styles/profile.module.css";
 
 export default function Profile() {

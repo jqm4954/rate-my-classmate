@@ -32,6 +32,7 @@ const useUser = () => {
 
     useEffect(() => {
         const cancelAuthListener = auth.onIdTokenChanged((user) => {
+
             if (user) {
                 const userData = {
                     id: user.uid,
@@ -40,35 +41,23 @@ const useUser = () => {
                 };
                 setUserCookie(userData);
                 setUser(userData);
+                switch (router.pathname) {
+                    case "/signin":
+                        router.push("/profile")
+                        break;
+                }
             } else {
                 removeUserCookie();
                 setUser(undefined);
+                router.push("/signin");
             }
             setLoading(false);
         })
 
-        const userFromCookie = getUserFromCookie()
-
-        // return to Signin page if no User cookie found
-        if (!userFromCookie) {
-            router.push("/signin");
-            return;
-        }
-
-        // everything after this point, User exist
-        // redirect client out of a page if Signed in
-        switch (router.pathname) {
-            case "/signin":
-                router.push("/profile")
-                break;
-        }
-
-        setUser(userFromCookie)
-
         return () => {
             cancelAuthListener()
         }
-    }, [])
+    }, []);
 
     return {user, logout, loading};
 };
